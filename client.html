@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Reader</title>
+</head>
+<body>
+  <h1>File Reader</h1>
+
+  <div id="section1">
+    <h2>Section 1</h2>
+    <p id="section1Response"></p>
+  </div>
+
+  <div id="section2">
+    <h2>Section 2</h2>
+    <p id="section2Response"></p>
+  </div>
+
+  <div id="section3">
+    <h2>Section 3</h2>
+    <p id="section3Response"></p>
+  </div>
+
+  <div id="section4">
+    <h2>Section 4</h2>
+    <p id="section4Response"></p>
+  </div>
+
+  <div id="section5">
+    <h2>Section 5</h2>
+    <p id="section5Response"></p>
+  </div>
+
+  <button onclick="sendRequests()">Read File</button>
+
+  <script>
+    const socket = new WebSocket('ws://localhost:8081');
+
+    socket.onopen = () => {
+      console.log('Connected to server');
+    };
+
+    function handleResponse(response) {
+      const { sectionId, response: word } = JSON.parse(response);
+      const paragraph = document.getElementById(`${sectionId}Response`);
+      paragraph.textContent += word + ' '; // Append the word to the paragraph
+    }
+
+    socket.onmessage = (event) => {
+      handleResponse(event.data);
+    };
+
+    function sendRequests() {
+      const sections = ['section1', 'section2', 'section3', 'section4', 'section5'];
+
+      sections.forEach(section => {
+        const message = {
+          sectionId: section,
+          fileName: 'dummy.txt'
+        };
+        socket.send(JSON.stringify(message));
+      });
+    }
+  </script>
+</body>
+</html>
