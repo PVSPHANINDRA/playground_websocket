@@ -19,7 +19,7 @@ To get started with Playground_WebSocket, follow these steps:
 1. Clone the repository to your local machine:
 
    ```
-   git clone https://github.com/your-username/playground_websocket.git
+   git clone https://github.com/PVSPHANINDRA/playground_websocket.git
    ```
 
 2. Checkout the branch corresponding to the experiment you're interested in:
