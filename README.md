@@ -1,6 +1,7 @@
-# WebSocket File Streaming Project
+# Handle Multiple Messages async from a client
 
 This project demonstrates a simple implementation of WebSocket-based file streaming between a Node.js server and a client.
+Majorly understanding how multiple messages are handled async in the websocket server and client env
 
 ## Features
 
